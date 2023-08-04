@@ -40,7 +40,7 @@ const CreateWebSearch = () => {
 
   return (
     <>
-      {isSiteAvailable ? <ToastContainer /> : <p>Site is not available</p>}
+      {/* {isSiteAvailable ? <ToastContainer /> : <p>Site is not available</p>} */}
       <div className='form-control flex flex-row items-center justify-center'>
         <input
           type='text'
