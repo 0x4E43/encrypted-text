@@ -1,24 +1,24 @@
 import { NextApiRequest, NextApiResponse } from "next";
 
 import { PrismaClient } from "@prisma/client";
+import { NextResponse } from "next/server";
 
 const prisma = new PrismaClient();
-export default async function handler(
-  req: NextApiRequest,
-  res: NextApiResponse
-) {
+export async function POST(req: Request) {
   //Takes the data from the request body
-  if (req.method !== "POST") {
-    return res
-      .status(405)
-      .json({ error: "Method not allowed, please use POST" });
-  }
-  const { siteName } = req.body;
+  const res = await req.json();
+  const siteName = res.siteName;
   //use Prisma to check if data exists in the database
   //if it does, return a 400 error
   //if it doesn't, return a 200 and add the data to the database
   if (!siteName) {
-    return res.status(400).json({ error: "Site name cannot be null" });
+    return NextResponse.json(
+      {
+        message: "Site name cannot be null",
+        code: 503,
+      },
+      { status: 503 }
+    );
   }
 
   try {
@@ -33,9 +33,13 @@ export default async function handler(
     });
 
     if (site) {
-      return res
-        .status(400)
-        .json({ error: "Site name already exists", status: false });
+      return NextResponse.json(
+        {
+          message: "Site already exists",
+          code: 333,
+        },
+        { status: 200 }
+      );
     }
 
     await prisma.sites.create({
@@ -44,11 +48,21 @@ export default async function handler(
       },
     });
 
-    return res
-      .status(200)
-      .json({ message: "Site name available", status: true });
+    return NextResponse.json(
+      {
+        message: "Site available! We created One for you!",
+        code: 222,
+      },
+      { status: 200 }
+    );
   } catch (error) {
     console.error(error);
-    return res.status(500).json({ error: "Internal server error" });
+    return NextResponse.json(
+      {
+        message: "Something went wrong",
+        code: 500,
+      },
+      { status: 500 }
+    );
   }
 }
