@@ -9,9 +9,10 @@ const LandingHero = () => {
             <h1 className="text-5xl font-bold">Lock and Load</h1>
             <h2 className="text-xl font-bold">Encrypt Your Thoughts</h2>
             <p className="py-6">
-            Thoughts Unleashed, Secrets Sealed: Encrypt and Store Your Notes with Confidence in Our Secure Vault.
+              Thoughts Unleashed, Secrets Sealed: Encrypt and Store Your Notes
+              with Confidence in Our Secure Vault.
             </p>
-            <CreateWebSearch/>
+            <CreateWebSearch />
           </div>
         </div>
       </div>

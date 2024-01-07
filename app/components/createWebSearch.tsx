@@ -4,6 +4,7 @@ import { useState } from "react";
 import { Slide, ToastContainer, toast } from "react-toastify";
 // import tostify css
 import "react-toastify/dist/ReactToastify.css";
+import PromptPassword from "./promptPassword";
 
 const CreateWebSearch = () => {
   //handle the form submission
@@ -35,13 +36,17 @@ const CreateWebSearch = () => {
       console.log("Checking toast");
       setIsSiteAvailable(true);
       toast.success(data.message, toastSuccess);
+      //redirect to user page OR pop open a modal for passwod
+    } else {
+      toast.warn(data.message, toastSuccess);
     }
     // Do something with the response data, such as updating the UI
   };
 
   return (
     <>
-      {isSiteAvailable ? <ToastContainer /> : <p>Site is not available</p>}
+      {isSiteAvailable ? <ToastContainer /> : <ToastContainer />}
+      {isSiteAvailable && <PromptPassword/>}
       <div className="form-control flex flex-row items-center justify-center">
         <input
           type="text"

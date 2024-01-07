@@ -1,17 +1,21 @@
 "use client";
 import UserNav from "./components/userNav";
-import { useState } from "react";
-
-import { Editor } from "react-draft-wysiwyg";
-import TextEditor from "./components/CustomTextEditor";
+import AddTodo from "./components/addTodo";
+import TodoList from "./components/todoList";
 
 const UserPage = () => {
-  const [value, setValue] = useState<string>("**Hello world!!!**");
   return (
     <>
       <UserNav />
-      <div className="container ml-10 mr-10 min-w-fit max-w-screen w-5/6 max-h-screen">
-        <TextEditor />
+      <div className="px-20">
+        <div className="grid grid-cols-12">
+          <div className="col-span-2 border-r border-teal-50">
+            <TodoList />
+          </div>
+          <div className="col-span-10 pl-10">
+            <AddTodo />
+          </div>
+        </div>
       </div>
     </>
   );

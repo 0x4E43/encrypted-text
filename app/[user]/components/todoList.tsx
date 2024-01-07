@@ -1,7 +1,7 @@
 const TodoList = () => {
   return (
     <>
-      <p>Todo List</p>
+      <p className="pr-5">Todo List</p>
     </>
   );
 };

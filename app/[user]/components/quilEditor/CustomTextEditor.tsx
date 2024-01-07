@@ -1,11 +1,10 @@
-import React, { useState } from 'react';
-import dynamic from 'next/dynamic';
-import { EditorState, ContentState, convertToRaw, convertFromRaw } from 'draft-js';
-import { Editor } from 'react-draft-wysiwyg';
-import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
+import React, { useState } from "react";
+import dynamic from "next/dynamic";
+import { EditorState, convertToRaw, convertFromRaw } from "draft-js";
+import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 
 const DynamicEditor = dynamic(
-  () => import('react-draft-wysiwyg').then((mod) => mod.Editor),
+  () => import("react-draft-wysiwyg").then((mod) => mod.Editor),
   { ssr: false }
 );
 
@@ -25,7 +24,7 @@ const TextEditor = ({ initialValue }: TextEditorProps) => {
 
   const onSave = (contentStateString: string) => {
     console.log(contentStateString);
-  }
+  };
 
   const handleEditorChange = (state: EditorState) => {
     setEditorState(state);
@@ -35,11 +34,13 @@ const TextEditor = ({ initialValue }: TextEditorProps) => {
   };
 
   return (
-    <div style={{ height: '75vh' }} className='bg-base-200 text-white align-middle items-center'>
+    <div
+      style={{ height: "75vh" }}
+      className="bg-base-200 text-white align-middle items-center"
+    >
       <DynamicEditor
         editorState={editorState}
         onEditorStateChange={handleEditorChange}
-        
       />
     </div>
   );

@@ -1,4 +1,4 @@
-import { Slide, toast, Theme } from 'react-toastify';
+import { Slide, toast, Theme } from "react-toastify";
 
 interface ToastSuccess {
   theme: Theme;
@@ -12,7 +12,7 @@ interface ToastSuccess {
 }
 
 export const toastSuccess: ToastSuccess = {
-  theme: 'dark',
+  theme: "dark",
   position: toast.POSITION.TOP_RIGHT,
   autoClose: 2000, //3 seconds
   hideProgressBar: false,
