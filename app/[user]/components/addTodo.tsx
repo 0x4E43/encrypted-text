@@ -1,6 +1,15 @@
-import QuillEditor from "./quilEditor/quillEditor";
+
+import React, { useState } from 'react';
+
+import SideModal from '@/app/components/elements/SideModal';
 
 const AddTodo = () => {
+  const [modal, setModal] = useState(false);
+  function togleModal(event: React.MouseEvent<HTMLButtonElement, MouseEvent>): void {
+    event.preventDefault();
+    setModal(!modal);
+  }
+
   return (
     <>
       <div className="flex flex-col w-full">
@@ -16,14 +25,10 @@ const AddTodo = () => {
         </div>
         <div className="top-0 right-0 bottom-0 left-0 w-4/5">
           <div className="flex flex-col h-full">
-            <form className="ml-10 mt-10 flex-1">
-              <input
-                type="text"
-                placeholder="Your Title here"
-                className="text-3xl w-full max-w-xl border-b border-gray-300 focus:outline-none h-[50px] p-4 bg-inherit font-bold mb-5"
-              />
-              <QuillEditor />
-            </form>
+            <div className="w-1/2 m-4">
+                <button className="btn btn-primary" onClick={togleModal}>Add Note 📝</button>
+            </div>
+            {modal && <SideModal/>}
           </div>
         </div>
       </div>
