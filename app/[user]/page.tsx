@@ -6,7 +6,7 @@ const UserPage = () => {
   return (
     <>
       <UserNav />
-      <div className="px-20">
+      <div>
             <AddTodo />
       </div>
     </>
