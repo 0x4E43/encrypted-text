@@ -1,4 +1,5 @@
 
+import { encrypt } from "@/utils/crypto";
 import { useState } from "react";
 import { FaCheck } from "react-icons/fa6";
 import { HiSparkles } from "react-icons/hi2";
@@ -23,6 +24,8 @@ export default function Editor() {
   const handleSubmit = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     console.log({title, content});
+    const enc_title = encrypt(title, "Nimai@123");
+    const enc_content = encrypt(content, "Nimai@123");
   }
   return (
     <>

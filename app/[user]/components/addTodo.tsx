@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-import SideModal from "./UI/sidemodal";
+import EditorModal from "./UI/editorModal";
 
 const AddTodo = () => {
   function togleModal(
@@ -27,7 +27,7 @@ const AddTodo = () => {
         </div>
       </div>
       <dialog id="inputModal" className="modal">
-        <SideModal />
+        <EditorModal />
       </dialog>
     </>
   );

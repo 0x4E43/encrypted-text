@@ -1,6 +1,6 @@
 import Editor from "./editor";
 
-export default function SideModal() {
+export default function EditorModal() {
   return (
     <>
       <div className="modal-box h-4/5 w-3/5">
