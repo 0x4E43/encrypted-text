@@ -1,7 +1,16 @@
+const Cryptr = require("cryptr");
 
-const bcrypt = require('bcrypt');
+export const encrypt = (data: string, key: string) => {
+  const cryptr = new Cryptr(key, {
+    encoding: "base64",
+    pbkdf2Iterations: 10000,
+    saltLength: 10,
+  });
 
-export const encrypt = (test : string, key: string) => {
-    // Use bcrypt to encrypt the password
-
-} 
+  const encryptedString = cryptr.encrypt(data);
+  const decryptedString = cryptr.decrypt(encryptedString);
+  
+  console.log(encryptedString); // CPbKO/FFLQ8lVKxV+jYJcLcpTU0ZvW3D+JVfUecmJmLYY10UxYEa/wf8PWDQqhw=
+  console.log(decryptedString); // bacon
+  return encryptedString;
+};
