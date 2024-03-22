@@ -33,13 +33,13 @@ export default function Editor() {
         <input
           type="text"
           placeholder="Title ..."
-          className="text-2xl bg-inherit mb-2 p-2  rounded-xl"
+          className="text-2xl bg-inherit mb-2 p-2  rounded-xl outline-none"
           onChange={handleTitleChange}
           value={title}
         />
         <textarea
           placeholder="My million dollar ideas ..."
-          className="flex-1 w-full bg-inherit resize-none p-2  rounded-xl"
+          className="flex-1 w-full bg-inherit resize-none p-2 rounded-xl outline-none"
           onChange={handleContentChange}
           value={content}
         ></textarea>
