@@ -26,7 +26,7 @@ model Notes {
   content   String
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
-  deletedAt DateTime @default(now())
+  deletedAt DateTime? @default(dbgenerated("NULL"))
   site      Sites    @relation("site", fields: [siteId], references: [id])
   siteId    String
   isDeleted Boolean  @default(false)

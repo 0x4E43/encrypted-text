@@ -1,0 +1,3 @@
+-- AlterTable
+ALTER TABLE "Notes" ALTER COLUMN "deletedAt" DROP NOT NULL;
+ALTER TABLE "Notes" ALTER COLUMN "deletedAt" DROP DEFAULT;

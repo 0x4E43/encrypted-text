@@ -4,11 +4,6 @@ import { NextResponse } from 'next/server';
 
 const prisma = new PrismaClient();
 
-type SiteData = {
-    siteName: string;
-    title: string;
-    content: string;
-}
 export async function POST(req: Request) {
     const reqData :  SiteData = await req.json();
     if(reqData === undefined) {
@@ -33,7 +28,15 @@ export async function POST(req: Request) {
                         updatedAt: new Date()
                     }
                 });
-                return NextResponse.json({"message": "Data saved successfully", "data": result});
+
+                const resp : Notes= {
+                    id: result.id,
+                    category: result.category,
+                    title: result.title,
+                    content: result.content,
+                    siteId: result.siteId
+                } 
+                return NextResponse.json({"message": "Data saved successfully", "data": resp});
 
             }else{
                 return NextResponse.json({"error": "Site not found"});
