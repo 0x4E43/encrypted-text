@@ -20,14 +20,14 @@ model Sites {
 }
 
 model Notes {
-  id        String   @id @default(uuid())
+  id        String    @id @default(uuid())
   category  String
   title     String
   content   String
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
   deletedAt DateTime? @default(dbgenerated("NULL"))
-  site      Sites    @relation("site", fields: [siteId], references: [id])
+  site      Sites     @relation("site", fields: [siteId], references: [id])
   siteId    String
-  isDeleted Boolean  @default(false)
+  isDeleted Boolean   @default(false)
 }
