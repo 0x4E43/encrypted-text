@@ -36,3 +36,4 @@ next-env.d.ts
 
 #prisma migration
 /prisma/migrations/*
+.vscode/launch.json
