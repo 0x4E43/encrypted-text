@@ -1,11 +1,13 @@
 "use client";
 import UserNav from "./components/userNav";
 import AddTodo from "./components/addTodo";
-import { use, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { CardUI } from "./components/UI/cardUI";
+import { useRouter } from "next/navigation";
 
 const UserPage = () => {
   const [notes, setNotes] = useState<Notes[]>([]);
+  const [isAuth, setIsAuth] = useState<boolean>(false);
 
   useEffect(() => {
     fetch("/api/content", {
@@ -20,14 +22,30 @@ const UserPage = () => {
         console.log(data.data);
         setNotes(data.data);
       });
-  }, []); // Correctly positioned the dependency array// Moved the dependency array outside of the `.then` method
+  }, []);
+
+  const router = useRouter();
+
+  useEffect(() => {
+    // Ensure code runs only on the client side
+    if (typeof window !== "undefined") {
+      const isAuth = localStorage.getItem("isAuth") ?? false;
+      setIsAuth(Boolean(isAuth));
+    }
+  }, [router]);
+
   return (
     <>
+      {/* need to add secure route */}
       <UserNav />
-      <div>
-        <AddTodo />
-        <CardUI items={notes} />
-      </div>
+      {(isAuth && (
+        <div>
+          <div>
+            <AddTodo />
+            <CardUI className="mx-10" items={notes} />
+          </div>
+        </div>
+      )) || <div>Password required</div>}
     </>
   );
 };
