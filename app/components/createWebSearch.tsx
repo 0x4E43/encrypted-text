@@ -5,6 +5,7 @@ import { Slide, ToastContainer, toast } from "react-toastify";
 // import tostify css
 import "react-toastify/dist/ReactToastify.css";
 import PromptPassword from "./promptPassword";
+import { useRouter } from "next/navigation";
 
 const CreateWebSearch = () => {
   //handle the form submission
@@ -43,10 +44,16 @@ const CreateWebSearch = () => {
     // Do something with the response data, such as updating the UI
   };
 
+  const router = useRouter();
+  function handleUserNavigation() {
+    localStorage.setItem("isInitialUser", "true");
+    router.push("" + `/${siteName}`);
+  }
+
   return (
     <>
       {isSiteAvailable ? <ToastContainer /> : <ToastContainer />}
-      {isSiteAvailable && <PromptPassword/>}
+      {isSiteAvailable && handleUserNavigation()}
       <div className="form-control flex flex-row items-center justify-center">
         <input
           type="text"
