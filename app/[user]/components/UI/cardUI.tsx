@@ -44,7 +44,7 @@ export const CardUI = ({
               />
             )}
           </AnimatePresence>
-          <Card>
+          <Card className="bg-slate-1300">
             <CardTitle>{item.title}</CardTitle>
             <CardDescription>{item.content}</CardDescription>
             <div className="flex justify-between mt-4">
@@ -73,7 +73,7 @@ export const Card = ({
         className
       )}
     >
-      <div className="relative z-50">
+      <div className="relative z-50" onClick={() => console.log("Card Clicked ")}>
         <div className="p-4">{children}</div>
       </div>
     </div>
