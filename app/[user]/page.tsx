@@ -4,6 +4,7 @@ import AddTodo from "./components/addTodo";
 import { useEffect, useState } from "react";
 import { CardUI } from "./components/UI/cardUI";
 import { useRouter } from "next/navigation";
+import HandlePassword from "./components/handlePassword";
 
 const UserPage = () => {
   const [notes, setNotes] = useState<Notes[]>([]);
@@ -45,7 +46,7 @@ const UserPage = () => {
             <CardUI className="mx-10" items={notes} />
           </div>
         </div>
-      )) || <div>Password required</div>}
+      )) || <HandlePassword />}
     </>
   );
 };
