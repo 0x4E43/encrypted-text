@@ -4,8 +4,10 @@ import { useState } from "react";
 import { Slide, ToastContainer, toast } from "react-toastify";
 // import tostify css
 import "react-toastify/dist/ReactToastify.css";
-import PromptPassword from "./promptPassword";
+import PromptPassword from "../[user]/components/handlePassword";
 import { useRouter } from "next/navigation";
+import SetUserPassword from "./password";
+import SetUserInitialPasswordPage from "../password/page";
 
 const CreateWebSearch = () => {
   //handle the form submission
@@ -47,7 +49,7 @@ const CreateWebSearch = () => {
   const router = useRouter();
   function handleUserNavigation() {
     localStorage.setItem("isInitialUser", "true");
-    router.push("" + `/${siteName}`);
+    router.push("/password?siteName=" + siteName);
   }
 
   return (
