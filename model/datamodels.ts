@@ -1,3 +1,8 @@
+type Site ={
+    name: string;
+    shouldCreate: boolean;
+}
+
 type SiteData = {
     siteName: string;
     title: string;
