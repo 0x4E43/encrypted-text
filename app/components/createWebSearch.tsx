@@ -26,9 +26,13 @@ const CreateWebSearch = () => {
   };
 
   const checkSite = async (siteName: string) => {
+    const site: Site = {
+      name: siteName,
+      shouldCreate: true,
+    };
     const response = await fetch("/api/site-check", {
       method: "POST",
-      body: JSON.stringify({ siteName }),
+      body: JSON.stringify(site),
       headers: {
         "Content-Type": "application/json",
       },
@@ -37,7 +41,6 @@ const CreateWebSearch = () => {
     console.log("Site check response:", data);
     if (data.code === 222) {
       console.log("Checking toast");
-      setIsSiteAvailable(true);
       toast.success(data.message, toastSuccess);
       //redirect to user page OR pop open a modal for passwod
     } else {
