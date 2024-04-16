@@ -6,12 +6,11 @@ import { NextResponse } from "next/server";
 const prisma = new PrismaClient();
 export async function POST(req: Request) {
   //Takes the data from the request body
-  const res = await req.json();
-  const siteName = res.siteName;
+  const siteData: Site = await req.json();
   //use Prisma to check if data exists in the database
   //if it does, return a 400 error
   //if it doesn't, return a 200 and add the data to the database
-  if (!siteName) {
+  if (!siteData.name) {
     return NextResponse.json(
       {
         message: "Site name cannot be null",
@@ -28,7 +27,7 @@ export async function POST(req: Request) {
      */
     const site = await prisma.sites.findUnique({
       where: {
-        name: siteName,
+        name: siteData.name,
       },
     });
 
@@ -42,15 +41,17 @@ export async function POST(req: Request) {
       );
     }
 
-    await prisma.sites.create({
-      data: {
-        name: siteName,
-      },
-    });
-
+    if(siteData.shouldCreate){
+      await prisma.sites.create({
+        data: {
+          name: siteData.name,
+        },
+      });
+    }
+    const message  = siteData.shouldCreate ? "Site available! We created One for you!" : "Site available!";
     return NextResponse.json(
       {
-        message: "Site available! We created One for you!",
+        message: message,
         code: 222,
       },
       { status: 200 }
@@ -65,4 +66,15 @@ export async function POST(req: Request) {
       { status: 500 }
     );
   }
+}
+
+export async function GET(req: Request) {
+  const userRequest = await req.json();
+  console.log("User request", userRequest);
+  return NextResponse.json(
+    {
+      message: "This is a GET request",
+    },
+    { status: 200 }
+  );
 }
