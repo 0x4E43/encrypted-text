@@ -12,16 +12,31 @@ import {
 import { Input } from "./ui/input";
 import { ToastAction } from "./ui/toast";
 import { Toaster } from "./ui/toaster";
+import { useState } from "react";
+import {
+  AlertDialogHeader,
+  AlertDialogFooter,
+  AlertDialogDescription,
+  AlertDialogTitle,
+  AlertDialogContent,
+  AlertDialogTrigger,
+  AlertDialogCancel,
+  AlertDialogAction,
+  AlertDialog,
+} from "./ui/alert-dialog";
 
 const Landing = () => {
+  const [isSiteAvailable, setIsSiteAvailable] = useState(false);
   const toast = useToast();
   const handleOnClick = (e: React.MouseEvent<HTMLButtonElement>) => {
     console.log("Clicked");
+    setIsSiteAvailable(true);
     toast.toast({
       title: "Scheduled: Catch up ",
       description: "Friday, February 10, 2023 at 5:57 PM",
       action: <ToastAction altText="Goto schedule to undo">Undo</ToastAction>,
     });
+    <AlertDialogTrigger asChild></AlertDialogTrigger>;
   };
   return (
     <div>
@@ -48,6 +63,21 @@ const Landing = () => {
           </CardFooter>
         </Card>
       </div>
+      <AlertDialog open={isSiteAvailable} onOpenChange={setIsSiteAvailable}>
+        <AlertDialogContent>
+          <AlertDialogHeader>
+            <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
+            <AlertDialogDescription>
+              This action cannot be undone. This will permanently delete your
+              account and remove your data from our servers.
+            </AlertDialogDescription>
+          </AlertDialogHeader>
+          <AlertDialogFooter>
+            <AlertDialogCancel>Cancel</AlertDialogCancel>
+            <AlertDialogAction>Continue</AlertDialogAction>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
     </div>
   );
 };
