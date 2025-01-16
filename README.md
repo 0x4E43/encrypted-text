@@ -12,6 +12,7 @@ This project leverages Next.js for server-side rendering and TypeScript for stat
 - User authentication
 - Responsive design
 - Dark mode support
+- Many More
 
 ## Repository Structure
 
